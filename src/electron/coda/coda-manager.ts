@@ -20,13 +20,17 @@ export default class CodaManager {
 
   public static getInstance(apiKey: string | undefined = undefined): CodaManager {
     if (!CodaManager.instance) {
+      const store = new Store<CodaSettings>({ configName: CodaManager.CODA_STORAGE_KEY });
       if (!apiKey) {
-        const store = new Store<CodaSettings>({ configName: CodaManager.CODA_STORAGE_KEY });
-        apiKey = store.get('apiKey');
+        apiKey = store.get('apiKey', true);
         if (!apiKey) {
           throw new Error('Coda API key not found');
         }
       }
+      else {
+        store.set('apiKey', apiKey, true);
+      }
+
       CodaManager.instance = new CodaManager(apiKey);
     }
 
