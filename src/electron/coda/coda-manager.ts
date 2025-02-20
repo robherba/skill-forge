@@ -1,5 +1,5 @@
 import { Coda } from "coda-js";
-import { Store } from "../storage/Store.js";
+import { Store } from "../storage/store.js";
 
 export interface CodaSettings {
   apiKey: string
