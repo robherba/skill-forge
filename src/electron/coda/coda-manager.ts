@@ -18,8 +18,17 @@ export default class CodaManager {
     this.coda = new Coda(apiKey);
   }
 
+  /**
+   * Gets the singleton instance of the CodaManager. If an apiKey is provided,
+   * the instance is created with the given apiKey and stored. Otherwise, the
+   * apiKey is fetched from the store. If the apiKey is not found in the store,
+   * an error is thrown.
+   *
+   * @param {string} [apiKey] The Coda API key to use.
+   * @returns {CodaManager} The singleton instance of the CodaManager.
+   */
   public static getInstance(apiKey: string | undefined = undefined): CodaManager {
-    if (!CodaManager.instance) {
+    if (!CodaManager.instance || apiKey) {
       const store = new Store<CodaSettings>({ configName: CodaManager.CODA_STORAGE_KEY });
       if (!apiKey) {
         apiKey = store.get('apiKey', true);

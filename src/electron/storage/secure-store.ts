@@ -6,14 +6,14 @@ import { safeStorage } from "electron";
  * @throws {Error} if encryption is not available or the encryption fails.
  *
  * @param {string} value The value to store securely.
- * @returns {Buffer<ArrayBufferLike>} The encrypted buffer.
+ * @returns {string} The encrypted buffer as a base64 string.
  */
-export const storeEncrypt = (value: string): Buffer<ArrayBufferLike> => {
+export const storeEncrypt = (value: string): string => {
   if (!safeStorage.isEncryptionAvailable()) {
     throw new Error("Encryption not available");
   }
 
-  return safeStorage.encryptString(value);
+  return safeStorage.encryptString(value).toString('base64');
 }
 
 /**
@@ -21,13 +21,13 @@ export const storeEncrypt = (value: string): Buffer<ArrayBufferLike> => {
  *
  * @throws {Error} if encryption is not available or the decryption fails.
  *
- * @param {Buffer<ArrayBufferLike>} value The encrypted buffer.
+ * @param {string} value The encrypted buffer as a base64 string.
  * @returns {string} The decrypted string.
  */
-export const storeDecrypt = (value: Buffer<ArrayBufferLike>): string => {
+export const storeDecrypt = (value: string): string => {
   if (!safeStorage.isEncryptionAvailable()) {
     throw new Error("Encryption not available");
   }
 
-  return safeStorage.decryptString(value);
+  return safeStorage.decryptString(Buffer.from(value, 'base64'));
 }
