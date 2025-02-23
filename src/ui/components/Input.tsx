@@ -1,50 +1,46 @@
-import { useState } from "react";
 import classNames from "classnames";
+import { InputHTMLAttributes, ReactNode } from "react";
 
-type InputType = {
-  placeholder?: string;
-  focusColor?:
-    | "violet"
-    | "pink"
-    | "red"
-    | "orange"
-    | "yellow"
-    | "lime"
-    | "cyan";
-  rounded?: "none" | "md" | "full";
+type InputProps = InputHTMLAttributes<HTMLInputElement> & {
+  color?:
+    | "vanilla"
+    | "peach"
+    | "melon"
+    | "lavender-pink"
+    | "lilac"
+    | "cornflower"
+    | "sky"
+    | "turquoise"
+    | "mint"
+    | "light-green";
+  label?: ReactNode;
   className?: string;
 };
 
-const Input = ({
-  placeholder,
-  focusColor = "pink",
-  rounded = "none",
-  className,
-}: InputType) => {
-  const [value, setValue] = useState("");
+const Input = ({ color = "vanilla", label, className, ...props }: InputProps) => {
   return (
-    <input
-      className={classNames(
-        "w-72 md:w-full max-w-md border-black border-2 p-2.5 focus:outline-none focus:shadow-[2px_2px_0px_rgba(0,0,0,1)] focus:bg-[#FFA6F6] focus:placeholder:text-slate-500 active:shadow-[2px_2px_0px_rgba(0,0,0,1)]",
-        { "focus:bg-violet-200": focusColor === "violet" },
-        { "focus:bg-pink-200": focusColor === "pink" },
-        { "focus:bg-red-200": focusColor === "red" },
-        { "focus:bg-orange-200": focusColor === "orange" },
-        { "focus:bg-yellow-200": focusColor === "yellow" },
-        { "focus:bg-lime-200": focusColor === "lime" },
-        { "focus:bg-cyan-200": focusColor === "cyan" },
-        { "rounded-none": rounded === "none" },
-        { "rounded-md": rounded === "md" },
-        { "rounded-full": rounded === "full" },
-        className
-      )}
-      type="text"
-      placeholder={placeholder}
-      value={value}
-      onChange={(e) => {
-        setValue(e.target.value);
-      }}
-    />
+    <div className="flex flex-col gap-2">
+      {label && <label className="font-medium">{label}</label>}
+      <input
+        className={classNames(
+          "p-3 rounded-lg border-2 border-black shadow-[4px_4px_0px_black] focus:outline-none focus:ring-2 focus:ring-black",
+          {
+            "bg-[var(--vanilla)]": color === "vanilla",
+            "bg-[var(--peach)]": color === "peach",
+            "bg-[var(--melon)]": color === "melon",
+            "bg-[var(--lavender-pink)]": color === "lavender-pink",
+            "bg-[var(--lilac)]": color === "lilac",
+            "bg-[var(--cornflower)]": color === "cornflower",
+            "bg-[var(--sky)]": color === "sky",
+            "bg-[var(--turquoise)]": color === "turquoise",
+            "bg-[var(--mint)]": color === "mint",
+            "bg-[var(--light-green)]": color === "light-green",
+          },
+          className
+        )}
+        {...props}
+      />
+    </div>
   );
 };
 
