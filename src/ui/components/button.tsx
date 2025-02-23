@@ -1,71 +1,90 @@
 import classNames from "classnames";
+import { Link, LinkProps } from 'react-router-dom';
+import { ButtonHTMLAttributes, ReactNode } from 'react';
 
-type ButtonType = {
-  buttonText: string;
-  rounded?: "none" | "md" | "full";
-  size?: "sm" | "md" | "lg";
-  color?: "violet" | "pink" | "red" | "orange" | "yellow" | "lime" | "cyan";
+type DefaultProps = {
+  children?: ReactNode;
+  color?: 
+    | "vanilla"
+    | "peach"
+    | "melon"
+    | "lavender-pink"
+    | "lilac"
+    | "cornflower"
+    | "sky"
+    | "turquoise"
+    | "mint"
+    | "light-green";
   disabled?: boolean;
   className?: string;
 };
 
+type ButtonType = DefaultProps &
+  (
+    | (ButtonHTMLAttributes<HTMLButtonElement> & { as?: 'button' })
+    | (LinkProps & { as: 'link' })
+  );
+
 const Button = ({
-  buttonText = "Enabled",
-  rounded = "none",
-  size = "md",
-  color = "cyan",
+  color = "vanilla",
   disabled,
   className,
+  children,
+  as,
+  ...props
 }: ButtonType) => {
+  const Element = as === "button" ? "button" : Link;
   return (
-    <button
+    <Element
       className={classNames(
-        "border-black border-2",
-
+        "flex items-center p-3 rounded-lg border-2 border-black shadow-[4px_4px_0px_black] hover:translate-x-[2px] hover:translate-y-[2px] transition-all cursor-pointer",
         {
-          "bg-violet-200 hover:bg-violet-300 active:bg-violet-400":
-            color === "violet" && !disabled,
+          "bg-[var(--vanilla)]":
+            color === "vanilla" && !disabled,
         },
         {
-          "bg-pink-200 hover:bg-pink-300 active:bg-pink-400":
-            color === "pink" && !disabled,
+          "bg-[var(--peach)]":
+            color === "peach" && !disabled,
         },
         {
-          "bg-red-200 hover:bg-red-300 active:bg-red-400":
-            color === "red" && !disabled,
+          "bg-[var(--melon)]":
+            color === "melon" && !disabled,
         },
         {
-          "bg-orange-200 hover:bg-orange-300 active:bg-orange-400":
-            color === "orange" && !disabled,
+          "bg-[var(--lavender-pink)]":
+            color === "lavender-pink" && !disabled,
         },
         {
-          "bg-yellow-200 hover:bg-yellow-300 active:bg-yellow-400":
-            color === "yellow" && !disabled,
+          "bg-[var(--lilac)]":
+            color === "lilac" && !disabled,
         },
         {
-          "bg-lime-200 hover:bg-lime-300 active:bg-lime-400":
-            color === "lime" && !disabled,
+          "bg-[var(--cornflower)]":
+            color === "cornflower" && !disabled,
         },
         {
-          "bg-cyan-200 hover:bg-cyan-300 active:bg-cyan-400":
-            color === "cyan" && !disabled,
+          "bg-[var(--sky)]":
+            color === "sky" && !disabled,
         },
-        { "rounded-none": rounded === "none" },
-        { "rounded-md": rounded === "md" },
-        { "rounded-full": rounded === "full" },
-        { "h-10 px-4 hover:shadow-[2px_2px_0px_rgba(0,0,0,1)]": size === "sm" },
-        { "h-12 px-5 hover:shadow-[2px_2px_0px_rgba(0,0,0,1)]": size === "md" },
-        { "h-14 px-5 hover:shadow-[4px_4px_0px_rgba(0,0,0,1)]": size === "lg" },
         {
-          "border-[#727272] bg-[#D4D4D4] text-[#676767] hover:bg-[#D4D4D4] hover:shadow-none active:bg-[#D4D4D4]":
-            disabled,
+          "bg-[var(--turquoise)]":
+            color === "turquoise" && !disabled,
+        },
+        {
+          "bg-[var(--mint)]":
+            color === "mint" && !disabled,
+        },
+        {
+          "bg-[var(--light-green)]":
+            color === "light-green" && !disabled,
         },
         className
       )}
       disabled={disabled}
+      {...props}
     >
-      {buttonText}
-    </button>
+      {children}
+    </Element>
   );
 };
 
