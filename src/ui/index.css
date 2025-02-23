@@ -1,12 +1,14 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @tailwind utilities;
 
 :root {
   --main: #88aaee;
   --overlay: rgba(0, 0, 0, 0.8); /* background color overlay for alert dialogs, modals, etc. */
 
-  --bg: #dfe5f2;
+  --bg: #fefefe;
   --bw: #fff; /* white and secondary black e.g. utility class variant would be: bg-[#fff] dark:bg-[#212121] */
   --blank: #000; /* blank black and white */
   --border: #000;
@@ -14,6 +16,17 @@
   --mtext: #000; /* text that is placed on background with main color e.g. text color of default button */
   --ring: #000;
   --ring-offset: #fff;
+
+  --vanilla: #fbf8cc;
+  --peach: #fde4cf;
+  --melon: #ffcfd2;
+  --lavender-pink: #f1c0e8;
+  --lilac: #cfbaf0;
+  --cornflower: #a3c4f3;
+  --sky: #90dbf4;
+  --turquoise: #8eecf5;
+  --mint: #98f5e1;
+  --light-green: #b9fbc0;
 
   --border-radius: 5px;
   --box-shadow-x: 4px;
@@ -35,6 +48,17 @@
   --mtext: #000;
   --ring: #fff;
   --ring-offset: #000;
+
+  --vanilla: #e3e795;
+  --peach: #d18a68;
+  --melon: #d36d80;
+  --lavender-pink: #a76cc1;
+  --lilac: #7f66c1;
+  --cornflower: #4965b2;
+  --sky: #378caa;
+  --turquoise: #2d7f91;
+  --mint: #2a6c5e;
+  --light-green: #3a7d5b;
 
   --shadow: var(--box-shadow-x) var(--box-shadow-y) 0px 0px var(--border);
 }
