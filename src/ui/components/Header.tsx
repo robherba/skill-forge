@@ -1,22 +1,14 @@
-import { useState } from 'react';
 import { Moon, Sun } from "lucide-react";
-import Button from './Button';
+import { useState } from 'react';
 import AppIcon from '../assets/icons/app-icon.svg?react';
 import GithubIcon from '../assets/icons/github.svg?react';
-import { WhoAmI } from '@/electron/api/user';
+import useWhoAmI from '../hooks/who-am-i-hook';
+import Button from './Button';
 
 const Header = () => {
   const theme = document.documentElement.classList.contains("dark");
   const [isDarkMode, setIsDarkMode] = useState(theme);
-  const [userData] = useState<WhoAmI | undefined>(() => {
-    const results = localStorage.getItem('user-data');
-    const data = results && JSON.parse(results);
-
-    return data;
-  });
-
-  console.log('userData', userData);
-
+  const { whoAmI: userData } = useWhoAmI();
   // Function to toggle between dark and light mode
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);

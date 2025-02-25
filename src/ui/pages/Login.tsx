@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import Button from '../components/Button';
 import Input from '../components/Input';
+import useWhoAmI from '../hooks/who-am-i-hook';
 
 const Login = () => {
   const [uuid, setUuid] = useState<string>('');
+  const { setWhoAmI } = useWhoAmI();
   // const [error, setError] = useState<string>('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -12,7 +14,7 @@ const Login = () => {
 
     // Permite que solo el formato UUID sea aceptado
     // const regex = /^[0-9a-f]*$/i; // Permite solo caracteres válidos para UUID (hexadecimales)
-    
+
     // // Asegúrate de que el valor no exceda los 36 caracteres del UUID (incluyendo los guiones)
     // if (value.length <= 36 && regex.test(value)) {
     //   // Insertar los guiones en las posiciones correctas de un UUID
@@ -41,7 +43,7 @@ const Login = () => {
     if (uuid) {
       const response = await window.api.whoAmI(uuid);
       if (response.status === 200 && response.data) {
-        localStorage.setItem('user-data', JSON.stringify(response.data));
+        setWhoAmI(response.data);
       }
     }
   };
@@ -50,11 +52,11 @@ const Login = () => {
     <div className='h-full flex flex-col items-center justify-center text-center'>
       <h1 className='mb-6 text-5xl font-extrabold'>Access Your Account</h1>
       <p className='mb-8 text-md text-gray-500 max-w-lg'>
-        Enter your <strong>Coda API Key</strong> to sign in and manage your data.  
-        If you don't have an API key yet, you can generate one in your  
-        <a 
-          href="https://coda.io/account" 
-          target="_blank" 
+        Enter your <strong>Coda API Key</strong> to sign in and manage your data.
+        If you don&apos;t have an API key yet, you can generate one in your
+        <a
+          href="https://coda.io/account"
+          target="_blank"
           rel="noopener noreferrer"
           className="ml-2 underline"
         >
@@ -63,7 +65,7 @@ const Login = () => {
       </p>
       <div className='w-full max-w-md'>
         <Input placeholder="Enter your Coda API Key" color='cornflower' className='w-full px-6' value={uuid} onChange={handleChange} />
-        <Button className='mt-10 px-6 w-fit mx-auto' color='light-green'onClick={submitHandler} >Get Access</Button>
+        <Button className='mt-10 px-6 w-fit mx-auto' color='light-green'onClick={() => void submitHandler()} >Get Access</Button>
         {/* { error && <p style={{ color: 'red' }}>{error}</p> } */}
       </div>
     </div>

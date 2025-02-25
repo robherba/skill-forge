@@ -1,10 +1,10 @@
 import classNames from "classnames";
-import { Link, LinkProps } from 'react-router-dom';
 import { ButtonHTMLAttributes, ReactNode } from 'react';
+import { Link, LinkProps } from 'react-router-dom';
 
-type DefaultProps = {
+interface DefaultProps {
   children?: ReactNode;
-  color?: 
+  color?:
     | "vanilla"
     | "peach"
     | "melon"
