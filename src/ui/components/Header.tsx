@@ -3,10 +3,19 @@ import { Moon, Sun } from "lucide-react";
 import Button from './Button';
 import AppIcon from '../assets/icons/app-icon.svg?react';
 import GithubIcon from '../assets/icons/github.svg?react';
+import { WhoAmI } from '@/electron/api/user';
 
 const Header = () => {
   const theme = document.documentElement.classList.contains("dark");
   const [isDarkMode, setIsDarkMode] = useState(theme);
+  const [userData] = useState<WhoAmI | undefined>(() => {
+    const results = localStorage.getItem('user-data');
+    const data = results && JSON.parse(results);
+
+    return data;
+  });
+
+  console.log('userData', userData);
 
   // Function to toggle between dark and light mode
   const toggleDarkMode = () => {
@@ -22,15 +31,19 @@ const Header = () => {
         <h1 className="text-xl font-semibold">Skill Forge</h1>
       </div>
 
-      {/* Github repository */}
-      <Button color="lilac" className='mr-4' as='link' to="https://github.com/robherba/skill-forge" target="_blank">
-        <GithubIcon className='w-6'/>
-      </Button>
+      <div className='flex gap-4 items-center'>
+        {/* Github repository */}
+        <Button color="lilac" as="link" to="https://github.com/robherba/skill-forge" target="_blank">
+          <GithubIcon className='w-6'/>
+        </Button>
 
-      {/* Dark/Light Mode Toggle */}
-      <Button onClick={toggleDarkMode} color="lilac">
-        {isDarkMode ? <Sun className="text-black" /> : <Moon className="text-black" />}
-      </Button>
+        {/* Dark/Light Mode Toggle */}
+        <Button onClick={toggleDarkMode} color="lilac">
+          {isDarkMode ? <Sun className="text-black" /> : <Moon className="text-black" />}
+        </Button>
+
+        {userData && <img src={userData.picture} className='w-14 h-14 rounded-full border-[var(--border)] border-2 shadow-[4px_4px_0px_black]' />}
+      </div>
     </header>
   );
 };

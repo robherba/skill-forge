@@ -7,7 +7,7 @@ import { logger } from "../utils.js";
 export interface WhoAmI {
   name: string;
   email: string;
-  pictureLink: string;
+  picture: string;
 }
 
 /**
@@ -31,7 +31,7 @@ async function whoAmI(apiKey: string): Promise<EventResponse<WhoAmI>> {
       const whoAmI: WhoAmI = {
         name: whoAmIResponse.name as string,
         email: whoAmIResponse.loginId as string,
-        pictureLink: whoAmIResponse.pictureLink as string,
+        picture: whoAmIResponse.pictureLink as string,
       };
 
       return new EventResponse<WhoAmI>(whoAmI);
