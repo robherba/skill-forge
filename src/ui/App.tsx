@@ -22,7 +22,7 @@ function App() {
             <Route path="settings" element={<Settings />} />
             <Route path="*" element={<NoPage />} />
           </Route>
-      </Routes>
+        </Routes>
       </BrowserRouter>
     </AuthProvider>
   );

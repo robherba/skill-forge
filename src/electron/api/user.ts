@@ -2,7 +2,7 @@ import { ipcMain } from "electron";
 import CodaManager from "../coda/coda-manager.js";
 import EventResponse from "../events/event-response.js";
 import { HttpStatusCode } from "../http/http-types.js";
-import { logger } from "../utils.js";
+import { logger } from "../utils/utils.js";
 
 export interface WhoAmI {
   name: string;

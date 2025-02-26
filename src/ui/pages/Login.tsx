@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Button from '../components/Button';
 import Input from '../components/Input';
-import useAuthContext, { AuthContextType } from '../hooks/use-auth-context';
+import useAuthContext from '../hooks/use-auth-context';
 
 const Login = () => {
   const [uuid, setUuid] = useState<string>('');
@@ -39,6 +39,11 @@ const Login = () => {
   // //   return parts.filter(Boolean).join('-');
   // // };
 
+  const handleExternalLinkClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    window.utils.openExternalLink(event.currentTarget.href);
+  };
+
   const submitHandler = async () => {
     if (uuid) {
       const response = await window.api.whoAmI(uuid);
@@ -56,9 +61,8 @@ const Login = () => {
         If you don&apos;t have an API key yet, you can generate one in your
         <a
           href="https://coda.io/account"
-          target="_blank"
-          rel="noopener noreferrer"
           className="ml-2 underline"
+          onClick={handleExternalLinkClick}
         >
           Coda account settings
         </a>.

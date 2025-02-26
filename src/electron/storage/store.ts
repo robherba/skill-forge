@@ -1,7 +1,7 @@
 import { app } from "electron";
 import fs from "fs";
 import path from "path";
-import { logger } from "../utils.js";
+import { logger } from "../utils/utils.js";
 import { storeDecrypt, storeEncrypt } from "./secure-store.js";
 
 interface StoreOptions {
