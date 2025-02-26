@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import Button from '../components/Button';
 import Input from '../components/Input';
-import useWhoAmI from '../hooks/who-am-i-hook';
+import useAuthContext, { AuthContextType } from '../hooks/use-auth-context';
 
 const Login = () => {
   const [uuid, setUuid] = useState<string>('');
-  const { setWhoAmI } = useWhoAmI();
+  const { setUser } = useAuthContext();
   // const [error, setError] = useState<string>('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,7 +43,7 @@ const Login = () => {
     if (uuid) {
       const response = await window.api.whoAmI(uuid);
       if (response.status === 200 && response.data) {
-        setWhoAmI(response.data);
+        setUser(response.data);
       }
     }
   };

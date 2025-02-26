@@ -2,13 +2,13 @@ import { Moon, Sun } from "lucide-react";
 import { useState } from 'react';
 import AppIcon from '../assets/icons/app-icon.svg?react';
 import GithubIcon from '../assets/icons/github.svg?react';
-import useWhoAmI from '../hooks/who-am-i-hook';
+import useAuthContext from "../hooks/use-auth-context";
 import Button from './Button';
 
 const Header = () => {
   const theme = document.documentElement.classList.contains("dark");
   const [isDarkMode, setIsDarkMode] = useState(theme);
-  const { whoAmI: userData } = useWhoAmI();
+  const { user: userData } = useAuthContext();
   // Function to toggle between dark and light mode
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
