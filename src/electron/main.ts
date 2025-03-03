@@ -1,7 +1,7 @@
 import { app, BrowserWindow } from 'electron';
 import path from 'path';
-import { handleEndpoints as userHandleEndpoints } from './api/user.js';
-import { handleEndpoints as utilsHandleEndpoints } from './utils/utils-handle.js';
+import { handleEndpoints as utilsHandleEndpoints } from './api/api-handle.js';
+import { handleEndpoints as userHandleEndpoints } from './api/api-user.js';
 import { isDev } from './utils/utils.js';
 
 app.on("ready", () => {
