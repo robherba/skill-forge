@@ -37,7 +37,7 @@ const Button = ({
   return (
     <Element
       className={classNames(
-        "flex items-center p-3 rounded-lg border-2 border-black shadow-[4px_4px_0px_black] hover:translate-x-[2px] hover:translate-y-[2px] transition-all cursor-pointer",
+        "flex items-center p-3 rounded-lg border-2 border-black shadow-[4px_4px_0px_black] hover:shadow-[1px_1px_0px_black] hover:translate-x-[2px] hover:translate-y-[2px] transition-all cursor-pointer",
         {
           "bg-[var(--vanilla)]":
             color === "vanilla" && !disabled,
