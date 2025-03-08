@@ -2,46 +2,16 @@ import { useState } from 'react';
 import Button from '../components/Button';
 import Input from '../components/Input';
 import useAuthContext from '../hooks/use-auth-context';
+import Link from '../components/Link';
 
 const Login = () => {
+  const [loading, setLoading] = useState<boolean>(true);
   const [uuid, setUuid] = useState<string>('');
   const { setUser } = useAuthContext();
-  // const [error, setError] = useState<string>('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setUuid(value);
-
-    // Permite que solo el formato UUID sea aceptado
-    // const regex = /^[0-9a-f]*$/i; // Permite solo caracteres válidos para UUID (hexadecimales)
-
-    // // Asegúrate de que el valor no exceda los 36 caracteres del UUID (incluyendo los guiones)
-    // if (value.length <= 36 && regex.test(value)) {
-    //   // Insertar los guiones en las posiciones correctas de un UUID
-    //   const formattedValue = formatUUID(value);
-    //   setUuid(formattedValue);
-    //   setError('');
-    // } else {
-    //   setError('El formato del UUID no es válido.');
-    // }
-  };
-
-  // // // Formatea el valor del UUID insertando los guiones en las posiciones correctas
-  // // const formatUUID = (value: string): string => {
-  // //   const parts = [
-  // //     value.slice(0, 8),
-  // //     value.slice(8, 12),
-  // //     value.slice(12, 16),
-  // //     value.slice(16, 20),
-  // //     value.slice(20, 36),
-  // //   ];
-
-  // //   return parts.filter(Boolean).join('-');
-  // // };
-
-  const handleExternalLinkClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault();
-    window.utils.openExternalLink(event.currentTarget.href);
   };
 
   const submitHandler = async () => {
@@ -59,17 +29,15 @@ const Login = () => {
       <p className='mb-8 text-md text-gray-500 max-w-lg'>
         Enter your <strong>Coda API Key</strong> to sign in and manage your data.
         If you don&apos;t have an API key yet, you can generate one in your
-        <a
-          href="https://coda.io/account"
-          className="ml-2 underline"
-          onClick={handleExternalLinkClick}
-        >
+        <Link href="https://coda.io/account" external>
           Coda account settings
-        </a>.
+        </Link>.
       </p>
       <div className='w-full max-w-md'>
         <Input placeholder="Enter your Coda API Key" color='cornflower' className='w-full px-6' value={uuid} onChange={handleChange} />
-        <Button className='mt-10 px-6 w-fit mx-auto' color='light-green'onClick={() => void submitHandler()} >Get Access</Button>
+        <Button className='mt-10 px-6 w-fit mx-auto' color='light-green'onClick={() => void submitHandler()} >
+          Get Access {loading && 'cargando...'}
+        </Button>
         {/* { error && <p style={{ color: 'red' }}>{error}</p> } */}
       </div>
     </div>
