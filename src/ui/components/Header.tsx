@@ -4,11 +4,15 @@ import AppIcon from '../assets/icons/app-icon.svg?react';
 import GithubIcon from '../assets/icons/github.svg?react';
 import useAuthContext from "../hooks/use-auth-context";
 import Button from './Button';
+import useOSThemeDetector from '../hooks/use-os-theme-detector';
 
 const Header = () => {
-  const theme = document.documentElement.classList.contains("dark");
-  const [isDarkMode, setIsDarkMode] = useState(theme);
+  const defaultOSTheme = useOSThemeDetector();
+  const userTheme = document.documentElement.classList.contains("dark");
+
+  const [isDarkMode, setIsDarkMode] = useState(userTheme || defaultOSTheme);
   const { user: userData } = useAuthContext();
+
   // Function to toggle between dark and light mode
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
@@ -34,7 +38,7 @@ const Header = () => {
           {isDarkMode ? <Sun className="text-black" /> : <Moon className="text-black" />}
         </Button>
 
-        {userData && <img src={userData.picture} className='w-14 h-14 rounded-full border-[var(--border)] border-2 shadow-[4px_4px_0px_black]' />}
+        {userData && <img src={userData.picture || 'prueba'} className='w-13 h-13 rounded-lg border-[var(--border)] border-2 shadow-[4px_4px_0px_black]' />}
       </div>
     </header>
   );

@@ -7,7 +7,7 @@ type CardType = {
   title?: string;
   description?: string;
   callToActionText?: string;
-  callToActionLink: string;
+  callToActionLink?: string;
 };
 
 const Card = ({
@@ -41,7 +41,7 @@ const Card = ({
                 {description}
               </p>
             )}
-            {callToActionText && <Button buttonText={callToActionText} rounded='md' />}
+            {callToActionText && <Button>{callToActionText}</Button>}
           </div>
         </article>
       {/* </Link> */}
