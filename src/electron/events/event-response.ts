@@ -1,4 +1,4 @@
-import { ApiEndpointMapping } from "../api/api-endpoints.js";
+import { ApiEndpointMapping } from "../api-endpoints.js";
 import { HttpStatusCode, HttpStatusMessage } from "../http/http-types.js";
 
 interface Response {
