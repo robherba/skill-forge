@@ -5,7 +5,7 @@ import useAuthContext from '../hooks/use-auth-context';
 import Link from '../components/Link';
 
 const Login = () => {
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, _setLoading] = useState<boolean>(true);
   const [uuid, setUuid] = useState<string>('');
   const { setUser } = useAuthContext();
 

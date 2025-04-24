@@ -1,4 +1,4 @@
-import { WhoAmI } from "@/electron/api/user";
+import { WhoAmI } from '@/electron/api/api-user';
 import { useCallback, useMemo, useState } from "react";
 import { LocalStorage } from "../storage/store";
 import { AuthContext } from "./use-auth-context";

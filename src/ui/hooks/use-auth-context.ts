@@ -1,4 +1,4 @@
-import { WhoAmI } from "@/electron/api/user";
+import { WhoAmI } from "@/electron/api/api-user";
 import { createContext, useContext } from "react";
 
 export interface AuthContextType {

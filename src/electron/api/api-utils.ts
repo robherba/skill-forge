@@ -5,5 +5,5 @@ function openExternalLink(link: string) {
 }
 
 export function handleEndpoints() {
-  ipcMain.handle('utils:openExternalLink', (event, link: string) => openExternalLink(link));
+  ipcMain.handle('utils:openExternalLink', (_event, link: string) => openExternalLink(link));
 }

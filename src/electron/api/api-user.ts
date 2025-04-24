@@ -56,5 +56,5 @@ async function whoAmI(apiKey: string): Promise<EventResponse<WhoAmI>> {
 };
 
 export function handleEndpoints() {
-  ipcMain.handle('api:user:whoAmI', (event, apiKey: string) => whoAmI(apiKey));
+  ipcMain.handle('api:user:whoAmI', (_event, apiKey: string) => whoAmI(apiKey));
 }
