@@ -40,6 +40,23 @@ export class Store<T> {
     }
   }
 
+  setAll(data: T): void {
+    this.data = data;
+    try {
+      if (data instanceof Map) {
+        data = Object.fromEntries(data) as T;
+      }
+
+      fs.writeFileSync(this.path, JSON.stringify(data, null, 2));
+    } catch (error) {
+      logger.error("Failed to save data:", error);
+    }
+  }
+
+  getAll(): T {
+    return this.data;
+  }
+
   private loadData(): T {
     if (!fs.existsSync(this.path)) {
       return {} as T;
