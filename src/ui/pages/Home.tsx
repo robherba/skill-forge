@@ -1,13 +1,12 @@
+import { SkillMap } from "@/electron/api/api-coda";
 import { useEffect, useMemo, useState } from "react";
 import Grid from "../components/Grid";
 import ProfileCard from "../components/ProfileCard";
-import { SkillMap } from "@/electron/api/api-coda";
 
 const Home = () => {
   const [profiles, setProfiles] = useState<SkillMap>();
 
   useEffect(() => {
-    console.log('entro');
     const fetchUsers = async () => {
       const { status, data } = await window.api.webChefSkillSheet();
 

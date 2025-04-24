@@ -41,8 +41,9 @@ async function webChefSkillSheet() {
     let token: string | undefined;
     let rows: SkillMap = store.getAll();
 
-    console.log(typeof rows);
-    if (rows.size > 0) {
+    if (rows) {
+      rows = new Map(Object.entries(rows)) as SkillMap;
+      console.log(typeof rows);
       return new EventResponse<SkillMap>(rows);
     }
 

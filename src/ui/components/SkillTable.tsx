@@ -1,5 +1,5 @@
-import React from 'react';
 import { Skill } from '@/electron/api/api-coda';
+import React from 'react';
 import Link from './Link';
 
 interface SkillTableProps {
@@ -13,7 +13,7 @@ function renderWithLinks(text: string) {
 
   return parts.map((part, index) =>
     urlRegex.test(part) ? (
-			<Link href={part} className="contents break-words" external>{part}</Link>
+			<Link key={index} href={part} className="contents break-words" external>{part}</Link>
     ) : (
       <span key={index}>{part}</span>
     )

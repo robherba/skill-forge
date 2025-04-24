@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import useAuthContext from '../hooks/use-auth-context';
 import { GroupedSkills } from '@/electron/api/api-coda';
+import { useEffect, useState } from 'react';
 import SkillTable from '../components/SkillTable';
+import useAuthContext from '../hooks/use-auth-context';
 
 const Profile = () => {
   const { user: userData } = useAuthContext();
@@ -12,7 +12,7 @@ const Profile = () => {
       const { status, data } = await window.api.webChefSkillSheet();
 
       if (status === 200 && data) {
-        const found = data.get(userData?.name || '');
+        const found = data.get(userData?.name ?? '');
         if (found) {
           setUserSkills(found);
         }
