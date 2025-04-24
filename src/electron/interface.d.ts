@@ -1,4 +1,4 @@
-import { WhoAmI } from './api/user.ts';
+import { WhoAmI } from './api/api-user.ts';
 import EventResponse from './events/event-response.ts';
 
 export interface IElectronAPI {
