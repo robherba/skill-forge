@@ -18,7 +18,7 @@ type DefaultProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
   external?: boolean;
 };
 
-const Link = ({className, external = false, ...props}: DefaultProps) => {
+const Link = ({children, className, external = false, ...props}: DefaultProps) => {
 
   const handleLinkClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
@@ -31,7 +31,7 @@ const Link = ({className, external = false, ...props}: DefaultProps) => {
       {...(external && { onClick: handleLinkClick })}
       {...props}
     >
-      Coda account settings
+      { children }
     </a>
   );
 };

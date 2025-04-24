@@ -18,13 +18,13 @@ interface CodaRowValues {
   "Skill Notes"?: string;
 };
 
-interface Skill {
+export interface Skill {
   name: string;
   level: SkillLevel;
   notes: string;
 };
 
-type GroupedSkills = Record<string, Record<string, Skill>>;
+export type GroupedSkills = Record<string, Record<string, Skill>>;
 
 interface PersonSkills {
   skills: GroupedSkills;
